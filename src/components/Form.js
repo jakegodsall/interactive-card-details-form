@@ -21,9 +21,11 @@ const Form = () => {
     const onSubmit = (data) => console.log(data);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
+        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
+            <div className='flex flex-col text-5xl'>
+                <label htmlFor='cardholderName'>cardholder name</label>
                 <input
+                    id='cardholderName'
                     {...register('cardholderName', {
                         required: true,
                     })}
@@ -36,7 +38,9 @@ const Form = () => {
                 )}
             </div>
             <div>
+                <label htmlFor='cardNumber'>card number</label>
                 <input
+                    id='cardNumber'
                     {...register('cardNumber', {
                         required: true,
                         pattern: /^[0-9]*$/,
@@ -54,7 +58,8 @@ const Form = () => {
                 )}
             </div>
             <div>
-                <div>
+                <fieldset>
+                    <legend>exp. date (mm/yy)</legend>
                     <div>
                         <input
                             {...register('expiryMonth', {
@@ -83,15 +88,20 @@ const Form = () => {
                             <p>Wrong format, numbers only.</p>
                         )}
                     </div>
+                </fieldset>
+                <div>
+                    <label htmlFor='cvc'>cvc</label>
+                    <input
+                        id='cvc'
+                        {...register('cvc', {
+                            required: true,
+                            pattern: /^[0-9]*$/,
+                            minLength: 3,
+                            maxLength: 3,
+                        })}
+                    />
                 </div>
-                <input
-                    {...register('cvc', {
-                        required: true,
-                        pattern: /^[0-9]*$/,
-                        minLength: 3,
-                        maxLength: 3,
-                    })}
-                />
+
                 {errors.cvc?.type === 'required' && <p>CVC cannot be blank.</p>}
                 {errors.cvc?.type === 'pattern' && <p>Wrong format, numbers only.</p>}
             </div>
