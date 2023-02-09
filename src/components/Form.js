@@ -39,9 +39,9 @@ const Form = () => {
                 <input
                     {...register('cardNumber', {
                         required: true,
+                        pattern: /^[0-9]*$/,
                         maxLength: 16,
                         minLength: 16,
-                        pattern: /d+/,
                     })}
                 />
                 {errors.cardNumber?.type === 'required' && <p>Card number cannot be blank.</p>}
@@ -59,7 +59,7 @@ const Form = () => {
                         <input
                             {...register('expiryMonth', {
                                 required: true,
-                                pattern: /d+/,
+                                pattern: /^[0-9]*$/,
                             })}
                         />
                         {errors.expiryMonth?.type === 'required' && (
@@ -73,7 +73,7 @@ const Form = () => {
                         <input
                             {...register('expiryYear', {
                                 required: true,
-                                pattern: /d+/,
+                                pattern: /^[0-9]*$/,
                             })}
                         />
                         {errors.expiryYear?.type === 'required' && (
@@ -85,12 +85,15 @@ const Form = () => {
                     </div>
                 </div>
                 <input
-                    type='number'
                     {...register('cvc', {
                         required: true,
+                        pattern: /^[0-9]*$/,
+                        minLength: 3,
+                        maxLength: 3,
                     })}
                 />
                 {errors.cvc?.type === 'required' && <p>CVC cannot be blank.</p>}
+                {errors.cvc?.type === 'pattern' && <p>Wrong format, numbers only.</p>}
             </div>
             <input type='submit' />
         </form>
