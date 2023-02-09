@@ -22,10 +22,14 @@ const Form = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
-            <div className='flex flex-col text-5xl'>
-                <label htmlFor='cardholderName'>cardholder name</label>
+            <div className='flex flex-col'>
+                <label htmlFor='cardholderName' className='uppercase'>
+                    cardholder name
+                </label>
                 <input
+                    className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-dark-grey-violet'
                     id='cardholderName'
+                    placeholder='e.g. Jane Appleseed'
                     {...register('cardholderName', {
                         required: true,
                     })}
