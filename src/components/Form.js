@@ -27,14 +27,45 @@ const Form = () => {
                 )}
             </div>
             <div>
-                <input {...register('cardNumber')} />
+                <input
+                    {...register('cardNumber', {
+                        required: true,
+                    })}
+                />
+                {errors.cardNumber?.type === 'required' && <p>Card number cannot be blank.</p>}
             </div>
             <div>
                 <div>
-                    <input type='number' {...register('expiryMonth')} />
-                    <input type='number' {...register('expiryYear')} />
+                    <div>
+                        <input
+                            type='number'
+                            {...register('expiryMonth', {
+                                required: true,
+                            })}
+                        />
+                        {errors.expiryMonth?.type === 'required' && (
+                            <p>Expiry month cannot be blank.</p>
+                        )}
+                    </div>
+                    <div>
+                        <input
+                            type='number'
+                            {...register('expiryYear', {
+                                required: true,
+                            })}
+                        />
+                        {errors.expiryYear?.type === 'required' && (
+                            <p>Expiry year cannot be blank.</p>
+                        )}
+                    </div>
                 </div>
-                <input type='number' {...register('cvc')} />
+                <input
+                    type='number'
+                    {...register('cvc', {
+                        required: true,
+                    })}
+                />
+                {errors.cvc?.type === 'required' && <p>CVC cannot be blank.</p>}
             </div>
             <input type='submit' />
         </form>
