@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 
 const Form = () => {
+    // form data state
+    const [formData, setFormData] = useState({
+        cardholderName: '',
+        cardNumber: '',
+        expiryMonth: 1,
+        expiryYear: 2030,
+        cvc: 111,
+    });
+    // react-hook-form handling
     const {
         register,
         formState: { errors },
         handleSubmit,
     } = useForm();
+    // handle submission of form data
     const onSubmit = (data) => console.log(data);
 
     return (
@@ -16,7 +26,6 @@ const Form = () => {
                 <input
                     {...register('cardholderName', {
                         required: true,
-                        pattern: /^[A-Za-z]*$/,
                     })}
                 />
                 {errors.cardholderName?.type === 'required' && (
@@ -30,32 +39,48 @@ const Form = () => {
                 <input
                     {...register('cardNumber', {
                         required: true,
+                        maxLength: 16,
+                        minLength: 16,
+                        pattern: /d+/,
                     })}
                 />
                 {errors.cardNumber?.type === 'required' && <p>Card number cannot be blank.</p>}
+                {errors.cardNumber?.type === 'pattern' && <p>Wrong format, numbers only.</p>}
+                {errors.cardNumber?.type === 'maxLength' && (
+                    <p>Card number should be 16 characters.</p>
+                )}
+                {errors.cardNumber?.type === 'minLength' && (
+                    <p>Card number should be 16 characters.</p>
+                )}
             </div>
             <div>
                 <div>
                     <div>
                         <input
-                            type='number'
                             {...register('expiryMonth', {
                                 required: true,
+                                pattern: /d+/,
                             })}
                         />
                         {errors.expiryMonth?.type === 'required' && (
                             <p>Expiry month cannot be blank.</p>
                         )}
+                        {errors.expiryMonth?.type === 'pattern' && (
+                            <p>Wrong format, numbers only.</p>
+                        )}
                     </div>
                     <div>
                         <input
-                            type='number'
                             {...register('expiryYear', {
                                 required: true,
+                                pattern: /d+/,
                             })}
                         />
                         {errors.expiryYear?.type === 'required' && (
                             <p>Expiry year cannot be blank.</p>
+                        )}
+                        {errors.expiryYear?.type === 'pattern' && (
+                            <p>Wrong format, numbers only.</p>
                         )}
                     </div>
                 </div>
