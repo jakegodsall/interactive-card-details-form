@@ -27,7 +27,7 @@ const Form = () => {
                     cardholder name
                 </label>
                 <input
-                    className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-dark-grey-violet'
+                    className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
                     id='cardholderName'
                     placeholder='e.g. Jane Appleseed'
                     {...register('cardholderName', {
@@ -44,28 +44,30 @@ const Form = () => {
             <div>
                 <label htmlFor='cardNumber'>card number</label>
                 <input
+                    className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
                     id='cardNumber'
+                    placeholder='e.g. 1234 5678 9123 0000'
+                    maxLength='16'
                     {...register('cardNumber', {
                         required: true,
                         pattern: /^[0-9]*$/,
-                        maxLength: 16,
                         minLength: 16,
                     })}
                 />
                 {errors.cardNumber?.type === 'required' && <p>Card number cannot be blank.</p>}
                 {errors.cardNumber?.type === 'pattern' && <p>Wrong format, numbers only.</p>}
-                {errors.cardNumber?.type === 'maxLength' && (
+                {/* {errors.cardNumber?.type === 'minLength' && (
                     <p>Card number should be 16 characters.</p>
-                )}
-                {errors.cardNumber?.type === 'minLength' && (
-                    <p>Card number should be 16 characters.</p>
-                )}
+                )} */}
             </div>
             <div>
                 <fieldset>
                     <legend>exp. date (mm/yy)</legend>
                     <div>
                         <input
+                            className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
+                            placeholder='MM'
+                            maxLength='2'
                             {...register('expiryMonth', {
                                 required: true,
                                 pattern: /^[0-9]*$/,
@@ -80,6 +82,9 @@ const Form = () => {
                     </div>
                     <div>
                         <input
+                            className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
+                            placeholder='YY'
+                            maxLength='2'
                             {...register('expiryYear', {
                                 required: true,
                                 pattern: /^[0-9]*$/,
@@ -96,7 +101,10 @@ const Form = () => {
                 <div>
                     <label htmlFor='cvc'>cvc</label>
                     <input
+                        className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
                         id='cvc'
+                        placeholder='eg. 123'
+                        maxLength='3'
                         {...register('cvc', {
                             required: true,
                             pattern: /^[0-9]*$/,

@@ -7,6 +7,8 @@ module.exports = {
             'dark-grey-violet': 'hsl(279, 6%, 55%)',
             'very-dark-violet': 'hsl(278, 68%, 11%)',
             'error-red': 'hsl(0, 100%, 66%)',
+            'linear-gradient1': 'hsl(249, 99%, 64%)',
+            'linear-gradient2': '(278, 94%, 30%)',
         },
         extend: {
             fontFamily: {
