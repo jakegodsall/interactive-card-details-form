@@ -35,10 +35,12 @@ const Form = () => {
                     })}
                 />
                 {errors.cardholderName?.type === 'required' && (
-                    <p>Cardholder name cannot be blank.</p>
+                    <p className='text-error-red text-sm font-bold'>Can't be blank</p>
                 )}
                 {errors.cardHolderName?.type === 'pattern' && (
-                    <p>Please enter a valid cardholder name.</p>
+                    <p className='text-error-red text-sm font-bold'>
+                        Please enter a valid cardholder name.
+                    </p>
                 )}
             </div>
             <div className='flex flex-col'>
@@ -56,8 +58,12 @@ const Form = () => {
                         minLength: 16,
                     })}
                 />
-                {errors.cardNumber?.type === 'required' && <p>Card number cannot be blank.</p>}
-                {errors.cardNumber?.type === 'pattern' && <p>Wrong format, numbers only.</p>}
+                {errors.cardNumber?.type === 'required' && (
+                    <p className='text-error-red text-sm font-bold'>Can't be blank.</p>
+                )}
+                {errors.cardNumber?.type === 'pattern' && (
+                    <p className='text-error-red text-sm font-bold'>Wrong format, numbers only.</p>
+                )}
             </div>
             <div className='grid grid-cols-2 gap-2'>
                 <fieldset className='grid grid-cols-2 gap-2'>
@@ -73,10 +79,12 @@ const Form = () => {
                             })}
                         />
                         {errors.expiryMonth?.type === 'required' && (
-                            <p>Expiry month cannot be blank.</p>
+                            <p className='text-error-red text-sm font-bold'>Can't be blank.</p>
                         )}
                         {errors.expiryMonth?.type === 'pattern' && (
-                            <p>Wrong format, numbers only.</p>
+                            <p className='text-error-red text-sm font-bold'>
+                                Wrong format, numbers only.
+                            </p>
                         )}
                     </div>
                     <div>
@@ -90,10 +98,12 @@ const Form = () => {
                             })}
                         />
                         {errors.expiryYear?.type === 'required' && (
-                            <p>Expiry year cannot be blank.</p>
+                            <p className='text-error-red text-sm font-bold'>Can't be blank.</p>
                         )}
                         {errors.expiryYear?.type === 'pattern' && (
-                            <p>Wrong format, numbers only.</p>
+                            <p className='text-error-red text-sm font-bold'>
+                                Wrong format, numbers only.
+                            </p>
                         )}
                     </div>
                 </fieldset>
@@ -113,8 +123,14 @@ const Form = () => {
                             maxLength: 3,
                         })}
                     />
-                    {errors.cvc?.type === 'required' && <p>CVC cannot be blank.</p>}
-                    {errors.cvc?.type === 'pattern' && <p>Wrong format, numbers only.</p>}
+                    {errors.cvc?.type === 'required' && (
+                        <p className='text-error-red text-sm font-bold'>Can't be blank.</p>
+                    )}
+                    {errors.cvc?.type === 'pattern' && (
+                        <p className='text-error-red text-sm font-bold'>
+                            Wrong format, numbers only.
+                        </p>
+                    )}
                 </div>
             </div>
             <button
