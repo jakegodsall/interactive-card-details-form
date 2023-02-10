@@ -7,10 +7,20 @@ import CardFront from 'public/images/bg-card-front.png';
 
 const Card = (props) => {
     return (
-        <React.Fragment>
-            <Image src={CardBack}></Image>
-            <Image src={CardFront}></Image>
-        </React.Fragment>
+        <div className='w-100vw h-80 relative'>
+            <Image
+                src={CardBack}
+                width={350}
+                alt='card back'
+                className='absolute right-4 top-4'
+            ></Image>
+            <Image
+                src={CardFront}
+                width={350}
+                alt='card front'
+                className='absolute left-4 bottom-4'
+            ></Image>
+        </div>
     );
 };
 
