@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useForm } from 'react-hook-form';
 
-const Form = () => {
+const Form = (props) => {
     // form data state
-    const [formData, setFormData] = useState({
-        cardholderName: '',
-        cardNumber: '',
-        expiryMonth: 1,
-        expiryYear: 2030,
-        cvc: 111,
-    });
+
     // react-hook-form handling
     const {
         register,
@@ -18,11 +12,13 @@ const Form = () => {
         handleSubmit,
     } = useForm();
     // handle submission of form data
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        props.formData(data);
+    };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col mx-4'>
-            <div className='flex flex-col'>
+            <div className='flex flex-col my-4'>
                 <label htmlFor='cardholderName' className='uppercase'>
                     cardholder name
                 </label>
@@ -35,15 +31,15 @@ const Form = () => {
                     })}
                 />
                 {errors.cardholderName?.type === 'required' && (
-                    <p className='text-error-red text-sm font-bold'>Can't be blank</p>
+                    <p className='text-error-red text-sm font-bold mt-2'>Can't be blank</p>
                 )}
                 {errors.cardHolderName?.type === 'pattern' && (
-                    <p className='text-error-red text-sm font-bold'>
+                    <p className='text-error-red text-sm font-bold mt-2'>
                         Please enter a valid cardholder name.
                     </p>
                 )}
             </div>
-            <div className='flex flex-col'>
+            <div className='flex flex-col my-4'>
                 <label htmlFor='cardNumber' className='uppercase'>
                     card number
                 </label>
@@ -59,13 +55,15 @@ const Form = () => {
                     })}
                 />
                 {errors.cardNumber?.type === 'required' && (
-                    <p className='text-error-red text-sm font-bold'>Can't be blank.</p>
+                    <p className='text-error-red text-sm font-bold mt-2'>Can't be blank</p>
                 )}
                 {errors.cardNumber?.type === 'pattern' && (
-                    <p className='text-error-red text-sm font-bold'>Wrong format, numbers only.</p>
+                    <p className='text-error-red text-sm font-bold mt-2'>
+                        Wrong format, numbers only
+                    </p>
                 )}
             </div>
-            <div className='grid grid-cols-2 gap-2'>
+            <div className='grid grid-cols-2 gap-2 my-4'>
                 <fieldset className='grid grid-cols-2 gap-2'>
                     <legend className='uppercase'>exp. date (mm/yy)</legend>
                     <div>
@@ -76,14 +74,26 @@ const Form = () => {
                             {...register('expiryMonth', {
                                 required: true,
                                 pattern: /^[0-9]*$/,
+                                min: 1,
+                                max: 12,
                             })}
                         />
                         {errors.expiryMonth?.type === 'required' && (
-                            <p className='text-error-red text-sm font-bold'>Can't be blank.</p>
+                            <p className='text-error-red text-sm font-bold mt-2'>Can't be blank</p>
                         )}
                         {errors.expiryMonth?.type === 'pattern' && (
-                            <p className='text-error-red text-sm font-bold'>
-                                Wrong format, numbers only.
+                            <p className='text-error-red text-sm font-bold mt-2'>
+                                Wrong format, numbers only
+                            </p>
+                        )}
+                        {errors.expiryMonth?.type === 'min' && (
+                            <p className='text-error-red text-sm font-bold mt-2'>
+                                Enter a valid month
+                            </p>
+                        )}
+                        {errors.expiryMonth?.type === 'max' && (
+                            <p className='text-error-red text-sm font-bold mt-2'>
+                                Enter a valid month
                             </p>
                         )}
                     </div>
@@ -98,11 +108,11 @@ const Form = () => {
                             })}
                         />
                         {errors.expiryYear?.type === 'required' && (
-                            <p className='text-error-red text-sm font-bold'>Can't be blank.</p>
+                            <p className='text-error-red text-sm font-bold mt-2'>Can't be blank</p>
                         )}
                         {errors.expiryYear?.type === 'pattern' && (
-                            <p className='text-error-red text-sm font-bold'>
-                                Wrong format, numbers only.
+                            <p className='text-error-red text-sm font-bold mt-2'>
+                                Wrong format, numbers only
                             </p>
                         )}
                     </div>
@@ -124,10 +134,10 @@ const Form = () => {
                         })}
                     />
                     {errors.cvc?.type === 'required' && (
-                        <p className='text-error-red text-sm font-bold'>Can't be blank.</p>
+                        <p className='text-error-red text-sm font-bold mt-2'>Can't be blank.</p>
                     )}
                     {errors.cvc?.type === 'pattern' && (
-                        <p className='text-error-red text-sm font-bold'>
+                        <p className='text-error-red text-sm font-bold mt-2'>
                             Wrong format, numbers only.
                         </p>
                     )}
