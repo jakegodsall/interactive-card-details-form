@@ -21,7 +21,7 @@ const Form = () => {
     const onSubmit = (data) => console.log(data);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
+        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col mx-4'>
             <div className='flex flex-col'>
                 <label htmlFor='cardholderName' className='uppercase'>
                     cardholder name
@@ -41,8 +41,10 @@ const Form = () => {
                     <p>Please enter a valid cardholder name.</p>
                 )}
             </div>
-            <div>
-                <label htmlFor='cardNumber'>card number</label>
+            <div className='flex flex-col'>
+                <label htmlFor='cardNumber' className='uppercase'>
+                    card number
+                </label>
                 <input
                     className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
                     id='cardNumber'
@@ -56,16 +58,13 @@ const Form = () => {
                 />
                 {errors.cardNumber?.type === 'required' && <p>Card number cannot be blank.</p>}
                 {errors.cardNumber?.type === 'pattern' && <p>Wrong format, numbers only.</p>}
-                {/* {errors.cardNumber?.type === 'minLength' && (
-                    <p>Card number should be 16 characters.</p>
-                )} */}
             </div>
-            <div>
-                <fieldset>
-                    <legend>exp. date (mm/yy)</legend>
+            <div className='grid grid-cols-2 gap-2'>
+                <fieldset className='grid grid-cols-2 gap-2'>
+                    <legend className='uppercase'>exp. date (mm/yy)</legend>
                     <div>
                         <input
-                            className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
+                            className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1 w-full'
                             placeholder='MM'
                             maxLength='2'
                             {...register('expiryMonth', {
@@ -82,7 +81,7 @@ const Form = () => {
                     </div>
                     <div>
                         <input
-                            className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
+                            className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1 w-full'
                             placeholder='YY'
                             maxLength='2'
                             {...register('expiryYear', {
@@ -98,8 +97,10 @@ const Form = () => {
                         )}
                     </div>
                 </fieldset>
-                <div>
-                    <label htmlFor='cvc'>cvc</label>
+                <div className='flex flex-col'>
+                    <label htmlFor='cvc' className='uppercase'>
+                        cvc
+                    </label>
                     <input
                         className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
                         id='cvc'
@@ -112,12 +113,16 @@ const Form = () => {
                             maxLength: 3,
                         })}
                     />
+                    {errors.cvc?.type === 'required' && <p>CVC cannot be blank.</p>}
+                    {errors.cvc?.type === 'pattern' && <p>Wrong format, numbers only.</p>}
                 </div>
-
-                {errors.cvc?.type === 'required' && <p>CVC cannot be blank.</p>}
-                {errors.cvc?.type === 'pattern' && <p>Wrong format, numbers only.</p>}
             </div>
-            <input type='submit' />
+            <button
+                type='submit'
+                className='w-100% rounded-lg bg-very-dark-violet text-light-grey-violet py-3 mt-6 active:trasnlate-x-2'
+            >
+                Confirm
+            </button>
         </form>
     );
 };
