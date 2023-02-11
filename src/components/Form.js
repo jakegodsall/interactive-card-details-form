@@ -3,17 +3,16 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const Form = (props) => {
-    // form data state
-
     // react-hook-form handling
     const {
         register,
         formState: { errors },
         handleSubmit,
-    } = useForm();
+    } = useForm({ mode: 'onBlur' });
     // handle submission of form data
     const onSubmit = (data) => {
-        props.formData(data);
+        console.log(data);
+        // props.formData(formData);
     };
 
     return (
