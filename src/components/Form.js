@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -6,6 +6,7 @@ const Form = (props) => {
     // react-hook-form handling
     const {
         register,
+        watch,
         formState: { errors },
         handleSubmit,
     } = useForm({ mode: 'onBlur' });
@@ -14,6 +15,8 @@ const Form = (props) => {
         console.log(data);
         // props.formData(formData);
     };
+
+    const inputs = watch();
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col mx-4'>
