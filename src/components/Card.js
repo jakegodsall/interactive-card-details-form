@@ -7,7 +7,7 @@ import CardFront from 'public/images/bg-card-front.png';
 
 const Card = (props) => {
     return (
-        <div className='w-100vw h-80 relative'>
+        <div className='w-[90vw] h-80 mx-auto relative'>
             <Image
                 src={CardBack}
                 width={350}
