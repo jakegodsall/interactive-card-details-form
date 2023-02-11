@@ -4,24 +4,18 @@ import Card from '@/components/Card.js';
 import Form from '../components/Form.js';
 
 const Home = () => {
-    const [formData, setFormData] = useState({
-        cardholderName: '',
-        cardNumber: '',
-        expiryMonth: 1,
-        expiryYear: 2030,
-        cvc: 111,
-    });
+    const [formData, setFormData] = useState({});
 
-    const onHandleForm = (data) => {
-        setFormData(data);
+    const formHandler = (data) => {
+        console.log('from parent', data);
 
-        console.log(formData);
+        return data;
     };
 
     return (
         <React.Fragment>
-            <Card />
-            <Form formData={onHandleForm} />
+            <Card formData={formHandler} />
+            <Form onHandleForm={formHandler} />
         </React.Fragment>
     );
 };
