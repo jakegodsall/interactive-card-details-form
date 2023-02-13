@@ -14,6 +14,10 @@ module.exports = {
             fontFamily: {
                 'default-font': ['Space Grotesk', 'sans-serif'],
             },
+            backgroundImage: {
+                cardFront: "url('/images/bg-card-front.png')",
+                cardBack: "url('/images/bg-card-back.png')",
+            },
         },
     },
 };
