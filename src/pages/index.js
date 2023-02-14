@@ -14,6 +14,7 @@ const Home = () => {
         watch,
         formState: { errors },
         handleSubmit,
+        control,
     } = useForm({ mode: 'onBlur' });
     // handle submission of form data
 
@@ -34,6 +35,7 @@ const Home = () => {
                         handleSubmit={handleSubmit}
                         register={register}
                         errors={errors}
+                        control={control}
                     />
                 </div>
             </div>

@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 
+import { Controller } from 'react-hook-form';
+
 import { PatternFormat } from 'react-number-format';
 
-const Form = ({ onHandleForm, handleSubmit, register, errors }) => {
+const Form = ({ onHandleForm, handleSubmit, register, errors, control }) => {
     const onSubmit = (data) => {
         console.log(data);
         // props.formData(formData);
@@ -39,25 +41,22 @@ const Form = ({ onHandleForm, handleSubmit, register, errors }) => {
                 <label htmlFor='cardNumber' className='uppercase'>
                     card number
                 </label>
-                {/* <input
-                    className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
-                    id='cardNumber'
-                    placeholder='e.g. 1234 5678 9123 0000'
-                    maxLength='16'
-                    {...register('cardNumber', {
-                        required: true,
-                        pattern: /^[0-9]*$/,
-                        minLength: 16,
-                    })}
-                /> */}
-                <PatternFormat
-                    format='#### #### #### ####'
-                    className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
-                    id='cardholderName'
-                    {...register('cardNumber', {
-                        required: true,
-                        minLemgth: 16,
-                    })}
+                <Controller
+                    name='cardNumber'
+                    control={control}
+                    render={({ field: { onChange, onBlur, value, name, ref } }) => (
+                        <PatternFormat
+                            format='#### #### #### ####'
+                            className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
+                            placeholder='e.g. 1234 5678 9123 0000'
+                            id='cardNumber'
+                            name='cardNumber'
+                            onChange={onChange}
+                            onBlur={onBlur}
+                            value={value}
+                            ref={ref}
+                        />
+                    )}
                 />
                 {errors.cardNumber?.type === 'required' && (
                     <p className='text-error-red text-sm font-bold mt-2'>Can't be blank</p>
