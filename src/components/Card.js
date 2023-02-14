@@ -5,7 +5,34 @@ import Image from 'next/image';
 const Card = (props) => {
     const formData = props.watch();
 
-    console.log(formData);
+    const cardNumber = formData.cardNumber;
+
+    const formatCardNumber = (cardNumber) => {
+        if (cardNumber) {
+            cardNumber = cardNumber.replace(/\s/g, '');
+
+            let cardNumberDefault = '0000000000000000';
+            let cardNumberDefaultArray = cardNumberDefault.split('');
+
+            for (var i = 0; i < cardNumber.trim().length; i++) {
+                cardNumberDefaultArray.shift();
+                cardNumberDefaultArray.push(cardNumber[i]);
+            }
+
+            const formattedString =
+                cardNumberDefaultArray.slice(0, 4).join('') +
+                ' ' +
+                cardNumberDefaultArray.slice(4, 8).join('') +
+                ' ' +
+                cardNumberDefaultArray.slice(8, 12).join('') +
+                ' ' +
+                cardNumberDefaultArray.slice(12, 16).join('');
+
+            return formattedString;
+        }
+    };
+
+    formatCardNumber(cardNumber);
 
     const formatExpiryDate = (expiryMonth, expiryYear) => {
         let formattedStr = '00/00';
@@ -37,7 +64,9 @@ const Card = (props) => {
                     className='self-start'
                 />
                 <p className='text-2xl self-start mt-auto mb-3 tracking-widest md:text-[1.7rem] md:mb-6 transition-all duration-1000'>
-                    {formData.cardNumber ? formData.cardNumber : '0000 0000 0000 0000'}
+                    {formData.cardNumber
+                        ? formatCardNumber(formData.cardNumber)
+                        : '0000 0000 0000 0000'}
                 </p>
                 <div className='flex justify-between items-end w-full'>
                     <p className='uppercase tracking-widest text-xs md:text-sm transition-all duration-1000'>
