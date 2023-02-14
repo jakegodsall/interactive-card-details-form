@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import { Controller } from 'react-hook-form';
-
 import { PatternFormat } from 'react-number-format';
+
+import Button from './UI/Button';
 
 const Form = ({ onHandleForm, handleSubmit, register, errors, control }) => {
     return (
@@ -142,12 +142,7 @@ const Form = ({ onHandleForm, handleSubmit, register, errors, control }) => {
                     )}
                 </div>
             </div>
-            <button
-                type='submit'
-                className='w-100% rounded-lg bg-very-dark-violet text-light-grey-violet py-3 mt-6 active:trasnlate-x-2'
-            >
-                Confirm
-            </button>
+            <Button type='submit'>Submit</Button>
         </form>
     );
 };

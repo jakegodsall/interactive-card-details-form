@@ -28,6 +28,12 @@ const Home = () => {
         console.log('status', dataSubmitted);
     };
 
+    const returnToFormHandler = (returnToForm) => {
+        console.log('working');
+        console.log(returnToForm);
+        setDataSubmitted(!returnToForm);
+    };
+
     return (
         <React.Fragment>
             <div className='absolute w-screen h-[30vh] bg-mainBackgroundMobile bg-no-repeat bg-cover lg:bg-mainBackgroundDesktop lg:w-[30vw] lg:h-screen'></div>
@@ -43,7 +49,7 @@ const Home = () => {
                             control={control}
                         />
                     ) : (
-                        <ThankYou />
+                        <ThankYou returnToForm={returnToFormHandler} />
                     )}
                 </div>
             </div>

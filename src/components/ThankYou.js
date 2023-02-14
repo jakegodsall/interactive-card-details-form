@@ -4,7 +4,13 @@ import Image from 'next/image';
 
 import CompleteIcon from 'public/images/icon-complete.svg';
 
-const ThankYou = () => {
+import Button from './UI/Button';
+
+const ThankYou = (props) => {
+    const returnToFormHandler = () => {
+        props.returnToForm(true);
+    };
+
     return (
         <div className='mx-auto px-4 flex flex-col items-center max-w-[450px]'>
             <Image src={CompleteIcon} alt='form data submitted' />
@@ -12,7 +18,9 @@ const ThankYou = () => {
             <p className='text-dark-grey-violet tracking-wide font-bold'>
                 We've added your card details
             </p>
-            <button className='w-full '>Continue</button>
+            <Button type='button' onClick={returnToFormHandler}>
+                Continue
+            </Button>
         </div>
     );
 };
