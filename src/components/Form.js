@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { PatternFormat } from 'react-number-format';
+
 const Form = ({ onHandleForm, handleSubmit, register, errors }) => {
     const onSubmit = (data) => {
         console.log(data);
@@ -18,6 +20,7 @@ const Form = ({ onHandleForm, handleSubmit, register, errors }) => {
                 <input
                     className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
                     id='cardholderName'
+                    maxLength='20'
                     placeholder='e.g. Jane Appleseed'
                     {...register('cardholderName', {
                         required: true,
@@ -36,7 +39,7 @@ const Form = ({ onHandleForm, handleSubmit, register, errors }) => {
                 <label htmlFor='cardNumber' className='uppercase'>
                     card number
                 </label>
-                <input
+                {/* <input
                     className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
                     id='cardNumber'
                     placeholder='e.g. 1234 5678 9123 0000'
@@ -45,6 +48,15 @@ const Form = ({ onHandleForm, handleSubmit, register, errors }) => {
                         required: true,
                         pattern: /^[0-9]*$/,
                         minLength: 16,
+                    })}
+                /> */}
+                <PatternFormat
+                    format='#### #### #### ####'
+                    className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
+                    id='cardholderName'
+                    {...register('cardNumber', {
+                        required: true,
+                        minLemgth: 16,
                     })}
                 />
                 {errors.cardNumber?.type === 'required' && (
