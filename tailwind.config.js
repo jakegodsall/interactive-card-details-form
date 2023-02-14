@@ -17,6 +17,8 @@ module.exports = {
             backgroundImage: {
                 cardFront: "url('/images/bg-card-front.png')",
                 cardBack: "url('/images/bg-card-back.png')",
+                mainBackgroundDesktop: "url('/images/bg-main-desktop.png')",
+                mainBackgroundMobile: "url('/images/bg-main-mobile.png')",
             },
         },
     },
