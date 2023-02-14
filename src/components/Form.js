@@ -5,14 +5,9 @@ import { Controller } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
 
 const Form = ({ onHandleForm, handleSubmit, register, errors, control }) => {
-    const onSubmit = (data) => {
-        console.log(data);
-        // props.formData(formData);
-    };
-
     return (
         <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onHandleForm)}
             className='mx-auto px-4 flex flex-col max-w-[450px]'
         >
             <div className='flex flex-col my-4'>

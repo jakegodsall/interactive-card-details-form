@@ -42,8 +42,6 @@ const Card = (props) => {
             dateArray.shift();
         }
 
-        console.log(dateArray);
-
         return dateArray.join('');
     };
 
