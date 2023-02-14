@@ -19,7 +19,10 @@ const Form = (props) => {
     const inputs = watch();
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col mx-4'>
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='mx-auto px-4 flex flex-col max-w-[450px]'
+        >
             <div className='flex flex-col my-4'>
                 <label htmlFor='cardholderName' className='uppercase'>
                     cardholder name

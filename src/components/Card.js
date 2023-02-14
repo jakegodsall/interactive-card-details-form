@@ -7,7 +7,7 @@ import CardFront from 'public/images/bg-card-front.png';
 
 const Card = (props) => {
     return (
-        <div className='w-full max-w-[450px] h-auto relative py-40 px-2 flex flex-col items-center justify-center md:py-44'>
+        <div className='mx-auto w-full max-w-[450px] h-auto relative py-40 px-2 flex flex-col items-center justify-center md:py-44'>
             <div className='absolute w-[330px] max-w-[400px] aspect-[11/6] bg-cardBack bg-no-repeat bg-cover right-2 top-2 rounded-md md:w-[400px] md:-right-14 transition-all duration-1000'>
                 <p className='absolute tracking-widest top-[5rem] right-12 text-white text-xs text-[#fff] md:top-[6.25rem] transition-all duration-1000'>
                     000
