@@ -34,15 +34,28 @@ const Card = (props) => {
 
     formatCardNumber(cardNumber);
 
+    const formatDate = (date) => {
+        let dateArray = ['0', '0'];
+
+        for (let i = 0; i < date.trim().length; i++) {
+            dateArray.push(date[i]);
+            dateArray.shift();
+        }
+
+        console.log(dateArray);
+
+        return dateArray.join('');
+    };
+
     const formatExpiryDate = (expiryMonth, expiryYear) => {
         let formattedStr = '00/00';
 
         if (expiryMonth && expiryYear) {
-            formattedStr = `${expiryMonth}/${expiryYear}`;
+            formattedStr = `${formatDate(expiryMonth)}/${formatDate(expiryYear)}`;
         } else if (expiryYear) {
-            formattedStr = `00/${expiryYear}`;
+            formattedStr = `00/${formatDate(expiryYear)}`;
         } else if (expiryMonth) {
-            formattedStr = `${expiryMonth}/00`;
+            formattedStr = `${formatDate(expiryMonth)}/00`;
         }
 
         return formattedStr;
