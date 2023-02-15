@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import Card from '@/components/Card.js';
 import Form from '../components/Form.js';
 import ThankYou from '@/components/ThankYou.js';
+import Transition from '@/components/Transition.js';
 
 const Home = () => {
     const [formData, setFormData] = useState('');
@@ -40,17 +41,23 @@ const Home = () => {
             <div className='w-screen h-screen flex flex-col lg:justify-center transition-all duration-1000 text-default-font'>
                 <div className='grid grid-rows-[auto_1fr] gap-10 mt-10 lg:grid-rows-1 lg:grid-cols-2 lg:mx-auto lg:gap-[10rem]'>
                     <Card formData={formHandler} watch={watch} />
-                    {!dataSubmitted ? (
-                        <Form
-                            onHandleForm={formHandler}
-                            handleSubmit={handleSubmit}
-                            register={register}
-                            errors={errors}
-                            control={control}
-                        />
-                    ) : (
-                        <ThankYou returnToForm={returnToFormHandler} />
-                    )}
+                    <Transition
+                        keyValue={!dataSubmitted ? 'form' : 'thankyou'}
+                        styles='flex flex-col justify-center'
+                    >
+                        {!dataSubmitted ? (
+                            <Form
+                                onHandleForm={formHandler}
+                                handleSubmit={handleSubmit}
+                                register={register}
+                                errors={errors}
+                                control={control}
+                                keyValue='form'
+                            />
+                        ) : (
+                            <ThankYou returnToForm={returnToFormHandler} keyValue='thankyou' />
+                        )}
+                    </Transition>
                 </div>
             </div>
         </React.Fragment>

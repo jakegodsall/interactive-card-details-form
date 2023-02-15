@@ -4,11 +4,12 @@ import { PatternFormat } from 'react-number-format';
 
 import Button from './UI/Button';
 
-const Form = ({ onHandleForm, handleSubmit, register, errors, control }) => {
+const Form = ({ onHandleForm, handleSubmit, register, errors, control, keyValue }) => {
     return (
         <form
             onSubmit={handleSubmit(onHandleForm)}
             className='mx-auto px-4 flex flex-col max-w-[450px]'
+            key={keyValue}
         >
             <div className='flex flex-col my-4'>
                 <label htmlFor='cardholderName' className='uppercase'>
@@ -39,7 +40,7 @@ const Form = ({ onHandleForm, handleSubmit, register, errors, control }) => {
                 <Controller
                     name='cardNumber'
                     control={control}
-                    render={({ field: { onChange, onBlur, value, name, ref } }) => (
+                    render={({ field: { onChange, onBlur, value, name } }) => (
                         <PatternFormat
                             format='#### #### #### ####'
                             className='border-2 border-light-grey-violet rounded-md p-2 focus:outline-linear-gradient1'
@@ -49,7 +50,6 @@ const Form = ({ onHandleForm, handleSubmit, register, errors, control }) => {
                             onChange={onChange}
                             onBlur={onBlur}
                             value={value}
-                            ref={ref}
                         />
                     )}
                 />
