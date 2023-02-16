@@ -4,6 +4,13 @@ import { PatternFormat } from 'react-number-format';
 
 import Button from './UI/Button';
 
+const currentYear = () => {
+    const date = new Date();
+    const twoDigit = date.getFullYear - 2000;
+
+    return twoDigit;
+};
+
 const Form = ({ onHandleForm, handleSubmit, register, errors, control, keyValue }) => {
     return (
         <form
@@ -104,6 +111,7 @@ const Form = ({ onHandleForm, handleSubmit, register, errors, control, keyValue 
                             {...register('expiryYear', {
                                 required: true,
                                 pattern: /^[0-9]*$/,
+                                min: currentYear(),
                             })}
                         />
                         {errors.expiryYear?.type === 'required' && (
@@ -112,6 +120,11 @@ const Form = ({ onHandleForm, handleSubmit, register, errors, control, keyValue 
                         {errors.expiryYear?.type === 'pattern' && (
                             <p className='text-error-red text-sm font-bold mt-2'>
                                 Wrong format, numbers only
+                            </p>
+                        )}
+                        {errors.expiryYear?.type === 'min' && (
+                            <p className='text-error-red text-sm font-bold mt-2'>
+                                Enter a valid year
                             </p>
                         )}
                     </div>
