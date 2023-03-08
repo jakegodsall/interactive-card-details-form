@@ -9,7 +9,7 @@ import Transition from '@/components/Transition.js';
 
 const Home = () => {
     const [formData, setFormData] = useState('');
-    const [dataSubmitted, setDataSubmitted] = useState(true);
+    const [dataSubmitted, setDataSubmitted] = useState(false);
 
     // react-hook-form handling
     const {
